@@ -1,4 +1,4 @@
-import { Link, useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import './MoviesCard.css';
 import moviePhoto from '../../images/movie-photo.jpg';
 
@@ -21,7 +21,6 @@ function MoviesCard() {
       </div>
       <img className="movie__photo" src={moviePhoto} alt="33 слова о дизайне" />
     </div>
-    
   );
 }
 

@@ -1,7 +1,6 @@
 import { Link } from 'react-router-dom';
 import './UnauthorizedHeader.css';
 
-
 function UnauthorizedHeader() {
   return (
     <nav className="header__unauthorized">

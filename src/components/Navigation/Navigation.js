@@ -1,9 +1,7 @@
 import { Link, NavLink } from 'react-router-dom';
 import './Navigation.css';
 
-
 function Navigation({ isOpen, isClose }) {
-  
   return (
     <section className={`navigation ${isOpen ? 'navigation_opened': ''}`}>
 			<div className="navigation__container">

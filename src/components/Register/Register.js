@@ -1,6 +1,5 @@
 import { Link } from 'react-router-dom';
 import './Register.css';
-
 import logo from '../../images/logo.svg';
 
 function Register() {
@@ -13,7 +12,7 @@ function Register() {
           <form name="formregister" className="register__form" noValidate>
           
             <p className="register__text">Имя</p>
-            <input type="text" className="register__input" name="name" id="name" required defaultValue="Виталий" />  
+            <input type="text" className="register__input" name="name" id="name" required defaultValue="Виталий" minLength="2" maxLength="30" />  
 						<p className="register__error"></p>
             
             <p className="register__text">E-mail</p>

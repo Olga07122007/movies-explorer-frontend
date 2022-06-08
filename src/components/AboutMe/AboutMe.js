@@ -1,4 +1,3 @@
-import { Link } from 'react-router-dom';
 import './AboutMe.css';
 import photo from '../../images/student-photo.jpg';
 
@@ -21,7 +20,7 @@ function AboutMe() {
           </div>
         </div>
         <div className="student__column">
-          <img className="student__photo" src={photo} />
+          <img className="student__photo" src={photo} alt="студент"/>
         </div>
       </div>
     </section>

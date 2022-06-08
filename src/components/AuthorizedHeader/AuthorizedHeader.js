@@ -4,9 +4,7 @@ import './AuthorizedHeader.css';
 
 import Navigation from '../Navigation/Navigation';
 
-
 function AuthorizedHeader() {
-  
   const [isNavigationOpen, setIsNavigationOpen] = useState(false);
   
   function handleNavigationOpen() {

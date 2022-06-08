@@ -8,7 +8,6 @@ import Login from '../Login/Login';
 import Profile from '../Profile/Profile';
 import NotFound from '../NotFound/NotFound';
 import Footer from '../Footer/Footer';
-import Navigation from '../Navigation/Navigation';
 
 function App() {
 	return (

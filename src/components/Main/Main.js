@@ -1,4 +1,3 @@
-import { Link } from 'react-router-dom';
 import './Main.css';
 
 import Promo from '../Promo/Promo';
@@ -10,14 +9,14 @@ import Portfolio from '../Portfolio/Portfolio';
 
 function Main() {
   return (
-  <main className="main">
-    <Promo />
-    <NavTab />
-    <AboutProject />
-    <Techs />
-    <AboutMe />
-    <Portfolio />
-  </main>  
+    <main className="main">
+      <Promo />
+      <NavTab />
+      <AboutProject />
+      <Techs />
+      <AboutMe />
+      <Portfolio />
+    </main>  
   );
 }
 
