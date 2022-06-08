@@ -1,0 +1,162 @@
+.register {
+	display: flex;
+	margin: 0 auto;
+	width: 100%;
+	align-self: center;
+  width: 100%;
+	height: 100%;
+}
+
+.register__container {
+	width: 396px;
+	align-self: center;
+	margin: 0 auto 0;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+
+.register__logo {
+  height: 38px;
+  width: 38px;
+  padding-top: 70px;
+  opacity: 1;
+  transition: opacity .3s ease-in;
+}
+
+.register__logo:hover {
+  opacity: 0.7;
+}
+
+.register__title {
+  font-size: 24px;
+  font-weight: 500;
+  padding: 0;
+  margin: 40px 0 40px;
+}
+
+.register__form {
+  display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+
+.register__text {
+  font-size: 10px;
+  color: #8b8b8b;
+  padding: 0;
+  margin: 0;
+}
+
+.register__input {
+  border: none;
+	font-size: 14px;
+	width: 100%;
+	height: 29px;
+	color: #fff;
+	padding: 0;
+	background: none;
+	border-bottom: 1px solid #424242;
+}
+
+.register__input:nth-of-type(2n) {
+  border-bottom: 1px solid #4285f4;
+}
+
+.register__input:last-of-type {
+  color: #ee3465;
+}
+
+.register__input:-webkit-autofill {
+  box-shadow: inset 0 0 0 50px #202020 !important;
+  -webkit-text-fill-color: #fff !important;
+  color: #fff !important;
+}
+
+.register__input:focus {
+	outline: 1px solid #424242;
+}
+
+.register__error {
+  color: #ee3465;
+  font-size: 10px;
+  padding: 0;
+  margin: 6px 0 20px;
+}
+
+.register__save-btn {
+  min-height: 45px;
+  width: 100%;
+  background-color: rgba(66,133,244,1);
+  font-size: 14px;
+  font-weight: 500;
+  border: none;
+  border-radius: 3px;
+  margin: 112px 0 16px;
+  color: #fff;
+  transition: background-color .3s ease-in;
+  cursor: pointer;
+}
+
+.register__save-btn:hover {
+  background-color: rgba(66,133,244,0.7);
+}
+
+.register__link {
+  font-size: 14px;
+  color: #8b8b8b;
+  text-align: center;
+  text-decoration: none;
+  margin: 0 0 70px;
+  opacity: 1;
+  transition: opacity .3s ease-in;
+}
+
+.register__link:hover {
+  opacity: 0.7
+}
+
+.register__blue {
+  color: #4285f4;
+}
+
+/*768 media*/
+@media screen and (max-width: 900px) {
+  .register__logo {
+    padding-top: 233px;
+  }
+  
+  .register__title {
+    margin: 37px 0 37px;
+  }
+}
+
+/*320 media*/
+@media screen and (max-width: 750px) {
+	.register__container {
+    width: 260px;
+  }
+
+  .register__title {
+    text-align: center;
+    margin: 51px 0 79px;
+  }
+  
+  .register__route {
+    display: flex;
+  }
+
+  .register__logo {
+    margin: 0 auto;
+    padding-top: 56px;
+  }
+
+  .register__save-btn {
+    font-size: 12px;
+    margin: 202px 0 16px;
+  }
+
+  .register__link {
+    font-size: 12px;
+  }
+}

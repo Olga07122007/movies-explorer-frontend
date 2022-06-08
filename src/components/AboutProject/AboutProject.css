@@ -1,0 +1,157 @@
+.about {
+  width: 100%;
+  margin: 0 auto 0;
+  padding: 0 5%;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+}
+
+.about__section-title {
+  margin: 0;
+  padding: 0;
+  font-size: 22px;
+  font-weight: 400;
+  padding-bottom: 23px;
+  margin-top: 110px;
+  width: 100%;
+  border-bottom: 1px solid #dadada;
+  letter-spacing: -0.04em;
+}
+
+.about__description {
+  display: flex;
+  margin: 70px 0 110px;
+}
+
+.about__column {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+}
+
+.about__title {
+  margin: 0;
+  padding: 0;
+  font-size: 20px;
+  font-weight: 400;
+  margin-bottom: 26px;
+  width: 84%;
+}
+
+.about__main-text {
+  margin: 0;
+  padding: 0;
+  font-size: 14px;
+  line-height: 20px;
+  width: 87%;
+  font-weight: 400;
+}
+
+.about__download {
+  display: grid;
+	grid-template-columns: 20% 80%;
+  margin: 0 0 107px;
+  width: 100%;
+}
+
+.about__download-section {
+  display: flex;
+  flex-direction: column;
+  color: #8b8b8b;
+  text-align: center;
+}
+
+.about__download-text {
+  margin: 0;
+  padding: 14px 0 0 0;
+  font-size: 14px;
+  line-height: 17px;
+  font-weight: 400;
+}
+
+.about__download-text:first-of-type {
+  padding: 9px 0;
+}
+
+.download-background-green {
+  background-color: #3ddc84;
+  color: #000;
+}
+
+.download-background-grey {
+  background-color: #303030;
+  color: #fff;
+}
+
+/*768 media*/
+@media screen and (max-width: 900px) {
+	.about__section-title {
+    margin-top: 93px;
+  }
+  
+  .about {
+    padding: 0 50px;
+  }
+  
+  .about__title {
+    margin-bottom: 19px;
+    letter-spacing: -0.04em;
+  }
+  
+  .about__download {
+    margin: 0 0 82px;
+  }
+
+  .about__description {
+    margin: 70px 0 76px;
+  }
+  
+  .about__main-text {
+    line-height: 19px;
+  }
+}
+
+/*320 media*/
+@media screen and (max-width: 750px) {
+  .about__section-title {
+    margin-top: 70px;
+    padding-bottom: 28px;
+    font-size: 18px;
+  }
+  
+  .about__description {
+    margin: 60px 0 4px;
+    flex-direction: column;
+  }
+
+  .about__column {
+    width: 100%;
+    margin-bottom: 56px;
+  }
+
+  .about {
+    padding: 0 18px;
+  }
+  
+  .about__title {
+    margin-bottom: 14px;
+    width: 100%;
+  }
+  
+  .about__main-text {
+    font-size: 11px;
+    line-height: 16px;
+    width: 100%;
+  }
+  
+  .about__download {
+    grid-template-columns: 35% 65%;
+    margin: 0 0 93px;
+  }
+  
+  .about__download-text {
+    font-size: 11px;
+    padding: 8px 0 0 0;
+  }
+}
