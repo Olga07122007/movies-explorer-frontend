@@ -75,6 +75,7 @@
 
 .register__input:focus {
 	outline: 1px solid #424242;
+  border-radius: 8px;
 }
 
 .register__error {
@@ -128,6 +129,10 @@
   
   .register__title {
     margin: 37px 0 37px;
+  }
+  
+  .register__error {
+    margin: 9px 0 20px;
   }
 }
 

@@ -32,11 +32,11 @@
 @media screen and (max-width: 900px) {
  .movies {
     width: 92%;
-    padding: 70px 0 159px;
+    padding: 71px 0 159px;
   }
   
   .movies__saved {
-    padding: 80px 0 169px;
+    padding: 71px 0 169px;
   }
 }
 
@@ -48,6 +48,6 @@
   }
   
   .movies__saved {
-    padding: 80px 0 169px;
+    padding: 51px 0 169px;
   }
 }

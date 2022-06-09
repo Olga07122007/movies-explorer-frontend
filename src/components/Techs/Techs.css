@@ -93,6 +93,7 @@
 @media screen and (max-width: 750px) {
   .technologies {
     padding: 0 18px;
+    background-color: #202020;
   }
 
   .technologies__section-title {
