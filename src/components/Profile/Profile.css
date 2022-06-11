@@ -99,10 +99,12 @@
   font-weight: 500;
   color: #ee3465;
   text-align: center;
-  text-decoration: none;
   margin: 0 0 70px;
   opacity: 1;
   transition: opacity .3s ease-in;
+  background: none;
+  border: none;
+  cursor: pointer;
 }
 
 .profile__link:hover {
