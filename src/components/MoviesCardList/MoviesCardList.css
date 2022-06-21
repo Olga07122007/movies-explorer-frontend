@@ -28,6 +28,8 @@
   background-color: rgba(47,47,47,0.7);
 }
 
+
+
 /*768 media*/
 @media screen and (max-width: 900px) {
  .movies {

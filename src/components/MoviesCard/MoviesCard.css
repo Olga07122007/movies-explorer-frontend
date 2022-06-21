@@ -78,6 +78,7 @@
     flex-direction: column-reverse;
     justify-content: space-between;
     margin-bottom: 21px;
+    align-items: center;
   }
   
   .movie:last-of-type {
@@ -88,7 +89,7 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    width: 100%;
+    width: 300px;
     margin: 0 auto;
   }
 
