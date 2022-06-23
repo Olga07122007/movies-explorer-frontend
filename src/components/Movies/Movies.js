@@ -4,21 +4,23 @@ import movi from '../../utils/MoviesApi';
 import SearchForm from '../SearchForm/SearchForm';
 import MoviesCardList from '../MoviesCardList/MoviesCardList';
 import Preloader from '../Preloader/Preloader';
+import { shortFilmDuration } from "../../utils/constants";
 
 function Movies({ onMovieLike, savedArray, openErrorWindow }) {
   const [initialMovies, setInitialMovies] = useState([]);
   const [filmsArray, setFilmsArray] = useState([]);
-  const [notFound, setNotFound] = useState(true);
+  const [notFound, setNotFound] = useState(false);
   const [shortMovies, setShortMovies] = useState(false);
   const [inputValue, setInputValue] = useState('');
-  const [isLoading, setIsLoading] = useState(false);
+  const [searchLoader, setSearchLoader] = useState(false);
   const [error, setError] = useState(false);
+  const [allFilms, setAllFilms] = useState([]);
+  const [isDisabled, setIsDisabled] = useState(false);
   
   // загрузка последнего результата поиска данного пользователя
   useEffect(() => {
     if (localStorage.getItem('movies')) {
       const movies = JSON.parse(localStorage.getItem('movies'));
-      movies.length === 0 ? setNotFound(true) : setNotFound(false);
       setInitialMovies(movies);
       if (localStorage.getItem('shortMovies') === 'true') {
         setFilmsArray(movies);
@@ -27,14 +29,13 @@ function Movies({ onMovieLike, savedArray, openErrorWindow }) {
       else {
         setFilmsArray(filterMoviesByDuration(movies));
         setShortMovies(true);
-        filterMoviesByDuration(movies).length === 0 ? setNotFound(true) : setNotFound(false);
       }
       if (localStorage.getItem('inputValue')) {
         setInputValue(localStorage.getItem('inputValue'));
       }
     }
-    else {
-      setNotFound(true);
+    if (localStorage.getItem('allMovies')) {
+      setAllFilms(JSON.parse(localStorage.getItem('allMovies')));
     }
   }, []);
   
@@ -59,7 +60,7 @@ function Movies({ onMovieLike, savedArray, openErrorWindow }) {
   
   // сортировка фильмов по длительности
   function filterMoviesByDuration(movies) {
-    return movies.filter((movie) => movie.duration <= 40);
+    return movies.filter((movie) => movie.duration <= shortFilmDuration);
   }; 
   
   // сортировка фильмов по ключевому слову
@@ -90,18 +91,27 @@ function Movies({ onMovieLike, savedArray, openErrorWindow }) {
   
   // поиск фильмов в базе
   function getMovies(keywords) {
-    setIsLoading(true);
-    movi.getInitialCards()
-      .then((movies) => {
-        handleSetInitialMovies(movies, keywords);
-      })
-      .catch((err) => {
-        console.log(err);
-        setError(true);
-      })
-      .finally(() => {
-        setIsLoading(false)
-      });
+    if (allFilms.length) {
+      handleSetInitialMovies(allFilms, keywords);
+    }
+    else {
+      setIsDisabled(true);
+      setSearchLoader(true);
+      movi.getInitialCards()
+        .then((movies) => {
+          setAllFilms(movies);
+          handleSetInitialMovies(movies, keywords);
+          localStorage.setItem('allMovies', JSON.stringify(movies))
+        })
+        .catch((err) => {
+          console.log(err);
+          setError(true);
+        })
+        .finally(() => {
+          setSearchLoader(false);
+          setIsDisabled(false);
+        });
+    }
   }
   
   // переключение чекбокса "короткометражки"
@@ -132,9 +142,10 @@ function Movies({ onMovieLike, savedArray, openErrorWindow }) {
         shortMovies={shortMovies}
         inputValue={inputValue}
         openErrorWindow={openErrorWindow}
+        isDisabled={isDisabled}
       />
       {
-        isLoading ? <Preloader /> :
+        searchLoader ? <Preloader /> :
         
         error ? 
         <p className="movies__error">Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз</p> :

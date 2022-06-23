@@ -19,13 +19,11 @@ function MoviesCard({ movie, onMovieLike, savedArray, onMovieDelete }) {
   // поставить (удалить) лайк и сохранить(удалить) фильм
 	function handleLikeClick() {
 		onMovieLike(movie);
-    setIsSaved(!isSaved);
   }
 
   // удалить фильм из сохраненных
   function handleDeleteClick() {
     onMovieDelete(movie);
-    setIsSaved(!isSaved);
   }    
   
   // длительность

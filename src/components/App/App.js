@@ -14,6 +14,7 @@ import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 import api from '../../utils/MainApi';
 import failIcon from '../../images/popup-fail-icon.svg';
 import InfoTooltip from '../InfoTooltip/InfoTooltip';
+import successIcon from '../../images/popup-success-icon.svg';
 
 function App() {
   const history = useHistory();
@@ -22,8 +23,10 @@ function App() {
   const { pathname } = useLocation();
   const [savedArray, setSavedArray] = useState([]);
   const [message, setMessage] = useState('');
+  const [icon, setIcon] = useState('');
   const [errorPopupOpen, setErrorPopupOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
+  const [isDisabled, setIsDisabled] = useState(false);
   
   // отображение начального профиля, загрузка сохраненных карточек
   useEffect(() => {
@@ -44,12 +47,13 @@ function App() {
         })
         .catch((err) => {
           console.log(err);
-        })
+        });
     }
   }, [loggedIn]);
   
   // регистрация
   function handleRegister(data) {
+    setIsDisabled(true);
     api.register(data)
 			.then((res) => {
         if (res) {
@@ -65,18 +69,23 @@ function App() {
           setMessage('При регистрации пользователя произошла ошибка');
         }
         openErrorPopup();
-			});
+        setIcon(failIcon);
+			})
+      .finally(() => { setIsDisabled(false) })
   }
   
   // авторизация
 	function handleLogin(data) {
+    setIsDisabled(true);
 		api.login(data)
 			.then((res) => {
 				if(res.token) {
           localStorage.setItem('token', res.token);
           setLoggedIn(true);
           history.push('/movies');
-				}
+          setMessage('Авторизация прошла успешно!');
+          setIcon(successIcon);
+        }
 			})
       .catch((err) => {
 				console.log(err);
@@ -86,8 +95,10 @@ function App() {
         else {
           setMessage('При авторизации пользователя произошла ошибка');
         }
-        openErrorPopup();
-			});
+        setIcon(failIcon);
+      })
+      .finally(() => { setIsDisabled(false) })
+    openErrorPopup();  
 	}
   
   // проверка токена
@@ -107,9 +118,12 @@ function App() {
   
   // изменение профиля
   function handleEditProfile(data) {
+    setIsDisabled(true);
     api.editProfile(data)
       .then(result => {
         setCurrentUser(result);
+        setMessage('Профиль успешно изменен!');
+        setIcon(successIcon);
       })
       .catch((err) => {
         console.log(err);
@@ -119,8 +133,10 @@ function App() {
         else {
           setMessage('При обновлении профиля произошла ошибка');
         }
-        openErrorPopup();
-      });
+        setIcon(failIcon);
+      })
+      .finally(() => { setIsDisabled(false) })
+    openErrorPopup();
   }
   
   // выход
@@ -140,7 +156,10 @@ function App() {
             setSavedArray([newMovie, ...savedArray]);
           })
           .catch(err => {
-            console.log(`Ошибка1: ${err}`);
+            console.log(`Ошибка: ${err}`);
+            setMessage('Произошла ошибка при сохранении фильма!');
+            setIcon(failIcon);
+            openErrorPopup();
           })
       }
       else {
@@ -153,7 +172,10 @@ function App() {
             setSavedArray((state) => state.filter((c) => c.movieId !== movie.id));
           })
           .catch(err => {
-            console.log(`Ошибка1: ${err}`);
+            console.log(`Ошибка: ${err}`);
+            setMessage('Произошла ошибка при удалении фильма!');
+            setIcon(failIcon);
+            openErrorPopup();
           })
       }       
     }
@@ -174,6 +196,9 @@ function App() {
           })
           .catch(err => {
             console.log(`Ошибка1: ${err}`);
+            setMessage('Произошла ошибка при удалении фильма!');
+            setIcon(failIcon);
+            openErrorPopup();
           })
       }  
     }
@@ -192,6 +217,7 @@ function App() {
   // открытие попапа с ошибкой, если не заполнено поле поиска фильма
   function openErrorPopupSearch(message) {
     setMessage(message);
+    setIcon(failIcon);
     setErrorPopupOpen(true);
   }
  
@@ -240,17 +266,18 @@ function App() {
           isLoading={isLoading}
           handleEditProfile={handleEditProfile}
           signOut={signOut}
+          isDisabled={isDisabled}
         />
       
         <Route path="/signup">
 					{
-            () => !loggedIn ? <Register handleRegister={handleRegister} /> : <Redirect to="/movies" />
+            () => !loggedIn ? <Register handleRegister={handleRegister} isDisabled={isDisabled} /> : <Redirect to="/movies" />
           }
         </Route>
         
         <Route path="/signin">
 					{
-            () => !loggedIn ? <Login handleLogin={handleLogin} /> : <Redirect to="/movies" />
+            () => !loggedIn ? <Login handleLogin={handleLogin} isDisabled={isDisabled} /> : <Redirect to="/movies" />
           }		
         </Route>
         
@@ -263,7 +290,7 @@ function App() {
       {pathname === '/' || pathname === '/movies' || pathname === '/saved-movies' ? <Footer /> : ''}
       
       <InfoTooltip 
-        image={failIcon} 
+        image={icon} 
         text={message} 
         isOpen={errorPopupOpen}  
         isClose={closeErrorPopup}

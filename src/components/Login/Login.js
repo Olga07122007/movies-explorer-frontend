@@ -4,7 +4,7 @@ import './Login.css';
 import isEmail from 'validator/es/lib/isEmail';
 import logo from '../../images/logo.svg';
 
-function Login({ handleLogin }) {
+function Login({ handleLogin, isDisabled }) {
   const [values, setValues] = useState({});
   const [errors, setErrors] = useState({});
   const [isValid, setIsValid] = useState(false);
@@ -47,7 +47,8 @@ function Login({ handleLogin }) {
               className="login__input" 
               name="email" 
               id="email" 
-              required 
+              required
+              disabled={isDisabled ? true : ''}  
             />
             <p className={`login__error ${errors.email ? 'login__error_visible' : ''}`}>{errors.email}</p>
 						
@@ -61,11 +62,12 @@ function Login({ handleLogin }) {
               id="password" 
               required
               minLength="6"
-              maxLength="30"  
+              maxLength="30"
+              disabled={isDisabled ? true : ''}  
             />
             <p className={`login__error ${errors.password ? 'login__error_visible' : ''}`}>{errors.password}</p>
 						
-            <button type="submit" className={`login__save-btn ${isValid ? "" : "login__save-btn_disabled"}`} disabled={!isValid ? true : ''}>Войти</button>
+            <button type="submit" className={`login__save-btn ${isValid ? "" : "login__save-btn_disabled"}`} disabled={(!isValid || isDisabled) ? true : ''}>Войти</button>
           </form>
 					<Link to="/signup" className="login__link">Еще не зарегистрированы?<span className="login__blue"> Регистрация</span></Link>
         </div>

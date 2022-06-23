@@ -2,7 +2,7 @@ import './SearchForm.css';
 import { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 
-function SearchForm({ getMovies, checkedShotMovies, shortMovies, inputValue, getSavedMovies, openErrorWindow }) {
+function SearchForm({ getMovies, checkedShotMovies, shortMovies, inputValue, getSavedMovies, openErrorWindow, isDisabled }) {
   const [keyWords, setKeyWords] = useState(inputValue);
   const { pathname } = useLocation();
   
@@ -47,9 +47,10 @@ function SearchForm({ getMovies, checkedShotMovies, shortMovies, inputValue, get
             required 
             placeholder="Фильм" 
             minLength="1" 
-            maxLength="100" 
+            maxLength="100"
+            disabled={isDisabled ? true : ''}  
           />
-          <button type="submit" className="search__search-btn"></button>
+          <button type="submit" className="search__search-btn" disabled={isDisabled ? true : ''}></button>
         </form>
         <div className="search__shortFilms">
           <div className="search__checkbox-group">

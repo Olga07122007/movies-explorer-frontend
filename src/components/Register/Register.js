@@ -4,7 +4,7 @@ import './Register.css';
 import logo from '../../images/logo.svg';
 import isEmail from 'validator/es/lib/isEmail';
 
-function Register({ handleRegister }) {
+function Register({ handleRegister, isDisabled }) {
   const [values, setValues] = useState({});
   const [errors, setErrors] = useState({});
   const [isValid, setIsValid] = useState(false);
@@ -50,6 +50,7 @@ function Register({ handleRegister }) {
               required minLength="2" 
               maxLength="30"
               pattern='^[A-Za-zА-Яа-я /s -]+$'
+              disabled={isDisabled ? true : ''}
             />
             <p className={`register__error ${errors.name ? 'register__error_visible' : ''}`}>{errors.name}</p>    
 						
@@ -62,6 +63,7 @@ function Register({ handleRegister }) {
               name="email" 
               id="email" 
               required
+              disabled={isDisabled ? true : ''}
             />
 						<p className={`register__error ${errors.email ? 'register__error_visible' : ''}`}>{errors.email}</p> 
             
@@ -75,11 +77,12 @@ function Register({ handleRegister }) {
               id="password" 
               required
               minLength="6"
-              maxLength="30"  
+              maxLength="30"
+              disabled={isDisabled ? true : ''}  
             />
 						<p className={`register__error ${errors.password ? 'register__error_visible' : ''}`}>{errors.password}</p> 
             
-            <button type="submit" className={`register__save-btn ${isValid ? "" : "register__save-btn_disabled"}`} disabled={!isValid ? true : ''}>Зарегистрироваться</button>
+            <button type="submit" className={`register__save-btn ${isValid ? "" : "register__save-btn_disabled"}`} disabled={(!isValid || isDisabled) ? true : ''}>Зарегистрироваться</button>
             
 					</form>
 					<Link to="/signin" className="register__link">Уже зарегистрированы? <span className="register__blue">Войти</span></Link>

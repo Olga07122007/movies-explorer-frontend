@@ -2,6 +2,7 @@ import { useLocation } from 'react-router-dom';
 import './MoviesCardList.css';
 import MoviesCard from '../MoviesCard/MoviesCard';
 import { useState, useEffect, useCallback } from 'react';
+import { mobileScreen, quantityCard, quantityCardMobile, startMoreCard, endMoreCard, endMoreCardMobile } from "../../utils/constants";
 
 function MoviesCardList({ moviesMore, filmsArray, notFound, onMovieLike, savedArray, savedPage, onMovieDelete }) {
   const { pathname } = useLocation();
@@ -11,17 +12,21 @@ function MoviesCardList({ moviesMore, filmsArray, notFound, onMovieLike, savedAr
   
   // отображение массива с карточками
   useEffect(() => {
-    if (filmsArray) {
-      if (screen > 480){
-        const result = filmsArray.slice(0, 7);
-        setResultArray(result);
-      }
-      else {
-        const result = filmsArray.slice(0, 5);
-        setResultArray(result);
+    if (!savedPage) {
+      if (filmsArray) {
+        if (screen > mobileScreen){
+          const result = filmsArray.slice(0, quantityCard);
+          setResultArray(result);
+        }
+        else {
+          const result = filmsArray.slice(0, quantityCardMobile);
+          setResultArray(result);
+        }
       }
     }
-    
+    else {
+      setResultArray(filmsArray);
+    }
   }, [filmsArray, screen, savedPage]);
  
   // получаем разрешение экрана пользователя
@@ -46,14 +51,14 @@ function MoviesCardList({ moviesMore, filmsArray, notFound, onMovieLike, savedAr
   // кнопка "Еще"
   function clickMore() {
     const last = resultArray.length-1;
-    if (screen > 480) {
+    if (screen > mobileScreen) {
       if (filmsArray.length > resultArray.length) {
-        const newCards = filmsArray.slice(last+1, last+8);
+        const newCards = filmsArray.slice(last + startMoreCard, last + endMoreCard);
         setResultArray([...resultArray, ...newCards]);
       }        
     }
     else {
-      const newCards = filmsArray.slice(last+1, last+6);
+      const newCards = filmsArray.slice(last + startMoreCard, last + endMoreCardMobile);
       setResultArray([...resultArray, ...newCards]);
     }
   }

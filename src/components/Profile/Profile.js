@@ -3,7 +3,7 @@ import './Profile.css';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 import isEmail from 'validator/es/lib/isEmail';
 
-function Profile({ handleEditProfile, signOut }) {
+function Profile({ handleEditProfile, signOut, isDisabled }) {
   const currentUser = useContext(CurrentUserContext);
   const [initiallyName, setInitiallyName] = useState(currentUser.name);
   const [initiallyEmail, setInitiallyEmail] = useState(currentUser.email);
@@ -88,7 +88,8 @@ function Profile({ handleEditProfile, signOut }) {
               name="name" id="name" 
               required minLength="2" 
               maxLength="30"
-              pattern='^[A-Za-zА-Яа-я /s -]+$'  
+              pattern='^[A-Za-zА-Яа-я /s -]+$' 
+              disabled={isDisabled ? true : ''}  
             />
             <p className={`profile__error ${errors.name ? 'profile__error_visible' : ''}`}>{errors.name}</p>  
 						
@@ -99,11 +100,12 @@ function Profile({ handleEditProfile, signOut }) {
               onChange={handleChange} 
               className="profile__input" 
               name="email" id="email" 
-              required  
+              required 
+              disabled={isDisabled ? true : ''}              
             />
             <p className={`profile__error ${errors.email ? 'profile__error_visible' : ''}`}>{errors.email}</p>
             
-						<button type="submit" className={`${(isDiffer && isValid) ? "profile__save-btn" : "profile__save-btn-disabled"}`} disabled={(isDiffer && isValid) ? '' : true}>Редактировать</button>
+						<button type="submit" className={`${(isDiffer && isValid) ? "profile__save-btn" : "profile__save-btn-disabled"}`} disabled={((isDiffer && isValid) || (isDisabled)) ? '' : true}>Редактировать</button>
           </form>
 					<button className="profile__link" onClick={signOut}>Выйти из аккаунта</button>
         </div>
