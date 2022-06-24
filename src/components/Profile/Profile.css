@@ -75,9 +75,29 @@
   font-size: 10px;
   padding: 0;
   margin: 6px 0 20px;
+  visibility: hidden;
+}
+
+.profile__error_visible {
+  visibility: visible;
 }
 
 .profile__save-btn {
+  min-height: 45px;
+  width: 100%;
+  background-color: rgba(66,133,244,1);
+  font-size: 14px;
+  font-weight: 500;
+  border: none;
+  border-radius: 3px;
+  margin: 176px 0 16px;
+  color: #fff;
+  transition: opacity .3s ease-in;
+  cursor: pointer;
+  opacity: 1;
+}
+
+.profile__save-btn-disabled {
   width: 100%;
   background: none;
   font-size: 13px;
@@ -87,7 +107,7 @@
   margin: 176px 0 16px;
   color: #fff;
   transition: opacity .3s ease-in;
-  cursor: pointer;
+  cursor: default;
 }
 
 .profile__save-btn:hover {
@@ -99,10 +119,12 @@
   font-weight: 500;
   color: #ee3465;
   text-align: center;
-  text-decoration: none;
   margin: 0 0 70px;
   opacity: 1;
   transition: opacity .3s ease-in;
+  background: none;
+  border: none;
+  cursor: pointer;
 }
 
 .profile__link:hover {

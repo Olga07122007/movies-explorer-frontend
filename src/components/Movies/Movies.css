@@ -1,0 +1,9 @@
+.movies__error {
+    margin: 0 auto;
+    padding: 25px 0 25px;
+    color: #fff;
+    font-size: 18px;
+    width: 90%;
+    line-height: 26px;
+    text-align: center;  
+}
