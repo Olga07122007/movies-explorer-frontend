@@ -78,7 +78,7 @@
 }
 
 .student__photo {
-  height: 327px;
+  height: 310px;
   border-radius: 10px;
 }
 
@@ -114,7 +114,7 @@
   }
   
   .student__photo {
-    height: 307px;
+    height: 230px;
   }
 }
 
@@ -168,6 +168,6 @@
   }
 
   .student__photo {
-    height: 352px;
+    height: 280px;
   }
 }
