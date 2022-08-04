@@ -1,5 +1,5 @@
 import './AboutMe.css';
-import photo from '../../images/student-photo.jpg';
+import photo from '../../images/student-photo.png';
 
 function AboutMe() {
   return (
@@ -7,13 +7,11 @@ function AboutMe() {
       <h2 className="student__section-title">Студент</h2>
       <div className="student__description">
         <div className="student__column">
-          <h3 className="student__title">Виталий</h3>
-          <p className="student__subtitle">Фронтенд-разработчик, 30 лет</p>
-          <p className="student__text">Я родился и живу в Саратове, закончил факультет экономики СГУ. 
-          У меня есть жена и дочь. Я люблю слушать музыку, а ещё увлекаюсь бегом. 
-          Недавно начал кодить. С 2015 года работал в компании «СКБ Контур». 
-          После того, как прошёл курс по веб-разработке, начал заниматься фриланс-заказами и 
-          ушёл с постоянной работы.</p>
+          <h3 className="student__title">Ольга</h3>
+          <p className="student__subtitle">Начинающий WEB-разработчик</p>
+          <p className="student__text">Я родилась и живу в г. Петрозаводске, закончила факультет экономики РАНХиГС. 
+          Интересуюсь программированием с 2019 года. В 2022 г. прошла курсы по WEB-разработке от Яндекс Практикума. 
+          Очень хочу развиваться и дальше в этой области. Я люблю слушать музыку и гулять по лесу, увлекаюсь плаванием и лыжами.</p>
           <div className="student__links">
             <a className="student__link" href="https://github.com/Olga07122007" target="blank">Facebook</a>
             <a className="student__link" href="https://github.com/Olga07122007" target="blank">Github</a>
